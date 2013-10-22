@@ -1,62 +1,239 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Coding-challenge by Seitenbau</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Coding-challenge : Seitenbau Coding Challenge 2013 " />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Coding-challenge</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Coding-challenge</h1>
-        <p>Seitenbau Coding Challenge 2013 </p>
 
-        <p class="view"><a href="https://github.com/Seitenbau/coding-challenge">View the Project on GitHub <small>Seitenbau/coding-challenge</small></a></p>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Seitenbau/coding-challenge">View on GitHub</a>
 
+          <h1 id="project_title">Coding-challenge</h1>
+          <h2 id="project_tagline">Seitenbau Coding Challenge 2013 </h2>
 
-        <ul>
-          <li><a href="https://github.com/Seitenbau/coding-challenge/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/Seitenbau/coding-challenge/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/Seitenbau/coding-challenge">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Seitenbau/coding-challenge/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Seitenbau/coding-challenge/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <h3>
 <a name="tame-it---claim-it" class="anchor" href="#tame-it---claim-it"><span class="octicon octicon-link"></span></a>Tame It - Claim It</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>Seitenbau is present at the Google Devfest 2013 and we brought a little challenge with us. Master it and
+there's a good chance you'll soon be the owner of a fancy new smart watch!</p>
+
+<h3>
+<a name="the-task" class="anchor" href="#the-task"><span class="octicon octicon-link"></span></a>The Task</h3>
+
+<p>You have to write an interpreter for the <strong>SFCPU</strong> - The Seitenbau Fantasy CPU. You can do that in whatever programming language you prefer. Just know that we have to be able to compile and run it (Meaning Turbo Pascal 6.0 targeting MS-DOS is not an option).</p>
+
+<p>Send in your solution via email to <a href="mailto:coding-challenge@seitenbau.com">coding-challenge@seitenbau.com</a>. The <strong>DEADLINE</strong> is 05.11.13</p>
+
+<h3>
+<a name="sfcpu-specification" class="anchor" href="#sfcpu-specification"><span class="octicon octicon-link"></span></a>SFCPU Specification</h3>
+
+<p>The information below should suffice to write an interpreter. If there is anything missing or you have further questions don't hesitate to contact us: <a href="mailto:coding-challenge@seitenbau.com">coding-challenge@seitenbau.com</a></p>
+
+<h4>
+<a name="memory-and-registers" class="anchor" href="#memory-and-registers"><span class="octicon octicon-link"></span></a>Memory And Registers</h4>
+
+<ul>
+<li>
+<strong>RAM</strong> : 256 bytes </li>
+<li>
+<strong>A</strong>  : 16bit general purpose register</li>
+<li>
+<strong>B</strong>  : 16bit general purpose register </li>
+<li>
+<strong>C</strong>  : 16bit general purpose register</li>
+<li>
+<strong>Z</strong>  : Zero Flag (Only modified by <em>CMP</em> Instruction)</li>
+<li>
+<strong>IP</strong> : Instruction Pointer Register</li>
+</ul><p>All memory and registers are to be initialized to 0 on startup.</p>
+
+<h4>
+<a name="instructions" class="anchor" href="#instructions"><span class="octicon octicon-link"></span></a>Instructions</h4>
+
+<table>
+<thead><tr>
+<th>Opcode</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><strong>LOAD</strong></td>
+<td>
+<em>reg</em>, <em>value</em>
+</td>
+<td>reg &lt;- value ; IP+=1 ; Z=0;</td>
+</tr>
+<tr>
+<td><strong>LOADM</strong></td>
+<td>
+<em>reg</em>, <em>address</em>
+</td>
+<td>reg &lt;- ram[address] ; IP+=1 ; Z=0;</td>
+</tr>
+<tr>
+<td><strong>SETM</strong></td>
+<td>
+<em>address</em>, <em>reg</em>
+</td>
+<td>ram[address] &lt;- reg ; IP+=1 ; Z=0;</td>
+</tr>
+<tr>
+<td><strong>ADD</strong></td>
+<td>
+<em>reg1, *reg2</em> <em>reg3</em>
+</td>
+<td>reg1 &lt;- reg2 + reg3 ; Z=0;</td>
+</tr>
+<tr>
+<td><strong>SUB</strong></td>
+<td>
+<em>reg1</em>, <em>reg2</em> <em>reg3</em>
+</td>
+<td>reg1 &lt;- reg2 - reg3 ; Z=0;</td>
+</tr>
+<tr>
+<td><strong>INC</strong></td>
+<td><em>reg</em></td>
+<td>reg &lt;- reg+1 ; IP+=1 ; Z=0;</td>
+</tr>
+<tr>
+<td><strong>DEC</strong></td>
+<td><em>reg</em></td>
+<td>reg &lt;- reg-1 ; IP+=1 ; Z=0;</td>
+</tr>
+<tr>
+<td><strong>OR</strong></td>
+<td>
+<em>reg</em>, <em>value</em>
+</td>
+<td>reg1 &lt;- reg2</td>
+</tr>
+<tr>
+<td><strong>XOR</strong></td>
+<td>
+<em>reg</em>, <em>value</em>
+</td>
+<td>reg &lt;- reg ^ value ; IP+=1 ; Z=0;</td>
+</tr>
+<tr>
+<td><strong>AND</strong></td>
+<td>
+<em>reg</em>, <em>value</em>
+</td>
+<td>reg &lt;- reg &amp; value ; IP+=1 ; Z=0;</td>
+</tr>
+<tr>
+<td><strong>CMP</strong></td>
+<td>
+<em>reg</em>, <em>value</em>
+</td>
+<td>Z &lt;- (reg == value) ? 1 : 0 ; IP+=1;</td>
+</tr>
+<tr>
+<td><strong>JNE</strong></td>
+<td><em>offset</em></td>
+<td>IP &lt;- (Z == 0) ? IP + offset : IP + 1 ; Z=0;</td>
+</tr>
+<tr>
+<td><strong>PRINT</strong></td>
+<td><em>register</em></td>
+<td>prints reg value IP+=1 ; Z=0; (no linebreak)</td>
+</tr>
+<tr>
+<td><strong>STOP</strong></td>
+<td></td>
+<td>stop execution ; Z=0;</td>
+</tr>
+</tbody>
+</table><p><strong>NOTES</strong></p>
+
+<p>If anything odd happens at runtime always trigger a STOP instruction. Running out of
+code also qualifies as odd - this means your programs will implicitly always end with
+a STOP instruction . The STOP instruction should print the following (including the
+leading line break):</p>
+
+<pre><code>
+A: &lt;register-A&gt;,
+B: &lt;register-B&gt;,
+C: &lt;register-C&gt;,
+Z: &lt;register-Z&gt;
+IP: &lt;register-IP&gt;
+</code></pre>
 
 <h4>
 <a name="example-code" class="anchor" href="#example-code"><span class="octicon octicon-link"></span></a>Example Code</h4>
 
-<pre><code>LOAD A, 12
+<pre><code>LOAD A, 1
+SETM 0, A
+LOADM A,0
+OR A, 8
+PRINT A
+XOR A, 42
+PRINT A
 XOR A, 42
 PRINT A
 LOAD C, 10
 PRINT C
 DEC C
+CMP C, 0
 JNE -3
+STOP
 </code></pre>
 
-<h4>
-<a name="instructions" class="anchor" href="#instructions"><span class="octicon octicon-link"></span></a>Instructions</h4>
+<p>The code above should print the following:</p>
+
+<pre><code>935910987654321
+
+A: 9
+B: 0
+C: 0
+Z: true
+IP: 15 
+</code></pre>
 
 <h3>
-<a name="rules" class="anchor" href="#rules"><span class="octicon octicon-link"></span></a>Rules</h3>
+<a name="rules--general" class="anchor" href="#rules--general"><span class="octicon octicon-link"></span></a>Rules &amp; General</h3>
+
+<ol>
+<li>Use any programming language</li>
+<li>Your program should take exactly one argument (the input file) and print any output to stdout.</li>
+<li>Your program should exit with code 1 when parsing the input failed. Otherwise exit with 0</li>
+<li>We may throw wacky input at your program, so be prepared!</li>
+<li>Above all: have fun and be creative!</li>
+</ol>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/Seitenbau">Seitenbau</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Coding-challenge maintained by <a href="https://github.com/Seitenbau">Seitenbau</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+
     
+
   </body>
 </html>
