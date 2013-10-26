@@ -129,7 +129,7 @@ there's a good chance you'll soon be the owner of a fancy new smart watch!</p>
 <td>
 <em>reg</em>, <em>value</em>
 </td>
-<td>reg1 &lt;- reg1</td>
+<td>reg &lt;- reg OR value ; IP+=1 ; Z=0;</td>
 </tr>
 <tr>
 <td><strong>XOR</strong></td>
@@ -169,6 +169,8 @@ there's a good chance you'll soon be the owner of a fancy new smart watch!</p>
 </tr>
 </tbody>
 </table><p><strong>NOTES</strong></p>
+
+<p>PRINT outputs the value of the specified register as a signed 16bit integer value.</p>
 
 <p>If anything odd happens at runtime always trigger a STOP instruction. Running out of
 code also qualifies as odd - this means your programs will implicitly always end with
